@@ -52,7 +52,10 @@ class ViewController: UIViewController {
          
          
            
-                   // как работает map
+          
+        
+        
+                 // как работает map
         
         let arr = [2, 3, 4, 5]
         
@@ -71,7 +74,7 @@ class ViewController: UIViewController {
         
         
         
-        func myMap( for array: [Int], _ transform: (Int) -> Int) -> [Int] {
+        func myMap(for array: [Int], _ transform: (Int) -> Int) -> [Int] {
             var result: [Int] = []
             for element in array {
                 result.append(transform(element))
@@ -86,10 +89,45 @@ class ViewController: UIViewController {
         _ =  myMap(for: arr){ $0 * $0 } // возводим в квадрат
         
         
+        // не достаточно гибкая функия result.append(transform(element))
+        // переделываем нашу функцию в дженерик(обобщенность)
+        
+        func myMap1<T>(for array: [Int], _ transform: (Int) -> T) -> [T] { // оченнь гибкая функция улучшаем ее дальше
+            var result: [T] = []
+            for element in array {
+                result.append(transform(element))
+            }
+               
+            return result
+            
+         }
+        
+        // теперь вызываем массив
+            
+            let oneResult = arr.myMap2{ $0 + 2 }// через extension
+          print(oneResult)
+        
+      // функция filtr
         
         
+        func myFilter(for array: [Int], _ transform: (Int) -> Bool) -> [Int] {
+            var result: [Int] = []
+            for element in array {
+              
+                if transform(element) {// true  || false
+                    result.append(element)
+                }
+            }
+               
+            return result
+            
+         }
         
+        let twoResult = myFilter(for: arr) { $0 == 2 } // [2] знак $0  это element это (Int) в  transform: (Int) -> Bool) -> [Int] 
+        let twoResultT = myFilter(for: arr) { $0 > 3}
         
+        print (twoResult)
+        print (twoResultT)
         
         
         
@@ -119,15 +157,15 @@ class ViewController: UIViewController {
     
  //  2. var operation = (operand: Double) -> Double { return -operand }
     
-    var operation = {(operand: Double) -> Double in return -operand } // готовое замыкание самый длинный вариант сокращаем его
+    var wer = {(operand: Double) -> Double in return -operand } // готовое замыкание самый длинный вариант сокращаем его
     
     // swift может понимать тип из контекста
     
-    var operation1 = {(operand: Double)  in return -operand }
+    var red = {(operand: Double)  in return -operand }
     
-    var operation2 = {(operand: Double) in return -operand }
+    var pop = {(operand: Double) in return -operand }
     
-    var operation3 = {(operand: Double) in -operand }
+    var sos = {(operand: Double) in -operand }
     
     // заменяем название аргумента operand
      
@@ -154,4 +192,15 @@ class ViewController: UIViewController {
 }
     
 
+extension Array {
+    func myMap2<T>( _ transform: (Element) -> T) -> [T] {
+        var result: [T] = []
+        for element in self {
+            result.append(transform(element))
 
+        }
+        
+        return result
+    
+}
+}
