@@ -10,6 +10,97 @@ import UIKit
 class ViewController: UIViewController {
 
     
+    
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        // разберем пример когда функция что-то повторно делает
+         
+         // у Array есть метод с именем map( возвращает новый массив)
+         
+         var numbers = [2.0, 3.0, 5.0, 7.0, 11.0]
+         
+        // let negativeNumbers = numbers.map({ -$0 })
+         
+        _ = numbers.map() {1.0/$0}
+         
+        _ = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+        _ = numbers.map { $0 * 10 }
+
+
+   //     _ = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+   //     _ = numbers.filter{$0 % 2 == 0} //[2, 4, 6, 8, 10]
+         
+         
+         
+        _ = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+         for i in 0..<numbers.count {
+             let timesTen = numbers[i] * 10
+             numbers[i] = timesTen
+         }
+
+         print(numbers) //[10, 20, 30, 40, 50, 60, 70, 80, 90, 100]
+         
+         
+         // массив в стринг
+        _ = numbers.map {String($0)} // ["", "", ""] хвостовое замыкание
+         
+         
+         
+         
+           
+                   // как работает map
+        
+        let arr = [2, 3, 4, 5]
+        
+        func increment(by number: Int, to array: [Int]) -> [Int] {
+            var result: [Int] = []
+            for element in array {
+                result.append(element + number)
+            }
+               
+            return result
+    }
+        
+        
+        _ = increment(by: 2, to: arr) //[4, 5, 6, 7]
+        
+        
+        
+        
+        func myMap( for array: [Int], _ transform: (Int) -> Int) -> [Int] {
+            var result: [Int] = []
+            for element in array {
+                result.append(transform(element))
+            }
+               
+            return result
+            
+         }
+        
+        _ =  myMap(for: arr){ $0 + 2 }
+        
+        _ =  myMap(for: arr){ $0 * $0 } // возводим в квадрат
+        
+        
+        
+        
+        
+        
+        
+        
+        
+    }
+    
+    
+    
+    
+    
+    
+    
     func freeMan(parameter: String) { //функция ничего не возвращает (String) -> () или  (String) -> Void(пустота)
         
     }
@@ -59,19 +150,8 @@ class ViewController: UIViewController {
         return someArray
     }
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
- 
-
-    
-    
+  
 }
+    
+
 
